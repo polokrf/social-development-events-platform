@@ -1,7 +1,18 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import useAuth from '../Axios/useAuth';
+import { toast } from 'react-toastify';
 
 const Header = () => {
+  const { user,logOut } = useAuth();
+
+  const handleLogOut = () => {
+    logOut().then(()=>{
+      toast.success('LogOut Successful')
+    }).catch(err => {
+      toast.error(err.message)
+    })
+  }
 
   const navLi = (
     <>
@@ -41,8 +52,6 @@ const Header = () => {
             >
               {navLi}
             </ul>
-
-           
           </div>
           <h1 className=" liner-text text-xl lg:text-2xl font-bold">
             Social Development Events Platform
@@ -52,8 +61,46 @@ const Header = () => {
           <ul className="menu menu-horizontal px-1">{navLi}</ul>
         </div>
 
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end ">
+          {/* dropDown menu */}
+          <div>
+            <div className="dropdown mr-2">
+              <img
+                tabIndex={0}
+                className="w-[50px] h-[50px] rounded-full"
+                src={user?.photoURL}
+                alt=""
+                title={user?.displayName}
+              />
+              <ul
+                tabIndex="-1"
+                className="dropdown-content menu max-w-52 bg-base-100 rounded-box z-1   p-2 shadow-sm "
+              >
+                <span className="font-bold border-b"> Name</span>
+                <li className="mb-2 text-blue-400">{user?.displayName}</li>
+                <span className="font-bold border-b"> Email</span>
+                <li className=" text-blue-400">{user?.email}</li>
+              </ul>
+            </div>
+          </div>
+          {/* link in login page or logout */}
+          <div>
+            {user ? (
+              <Link
+                onClick={handleLogOut}
+                className="btn btn-active btn-success text-white"
+              >
+                Log-Out
+              </Link>
+            ) : (
+              <Link
+                className="btn btn-active btn-success text-white"
+                to="/login"
+              >
+                Login
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>
