@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
+import GoogleBtn from '../GoogleLogin/GoogleBtn';
+import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
+import useAuth from '../Axios/useAuth';
+import { toast } from 'react-toastify';
 
 const Login = () => {
+  const {login} = useAuth()
+  const location = useLocation();
+  const navigate = useNavigate()
+  
   const [show, setShow] = useState(false);
 
   const handelLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+    login(email, password)
+      .then(res => {
+        toast.success('Successful');
+        navigate(`${location.state || '/'}`)
+      }).catch(err => {
+      toast.error(err.message)
+    })
   }
    const handleShow = e => {
      e.preventDefault();
@@ -52,8 +67,13 @@ const Login = () => {
               <button className="btn btn-outline btn-success  my-4">
                 Login
               </button>
+
             </fieldset>
-            <p>
+
+            <div>
+              <GoogleBtn></GoogleBtn>
+            </div>
+            <p className='mt-2'>
               Do not have an account{' '}
               <Link className="font-bold text-sky-600" to="/register">
                 Register

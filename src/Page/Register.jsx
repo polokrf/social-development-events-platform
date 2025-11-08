@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import useAuth from '../Axios/useAuth';
 import { toast } from 'react-toastify';
 
 const Register = () => {
   const { register, updateUser } = useAuth();
+  const navigate = useNavigate()
   const [show, setShow] = useState(false);
 
   const handelRegister = (e) => {
@@ -33,6 +34,7 @@ const Register = () => {
       .then(res => {
         toast.success('Successful')
         updateUser(person)
+        navigate('/')
       }).catch(err => {
       toast.error(err.message)
     })
@@ -104,7 +106,7 @@ const Register = () => {
             </fieldset>
             <p>
               Already have an account{' '}
-              <Link className="font-bold text-sky-600" to="/register">
+              <Link className="font-bold text-sky-600" to="/login">
                 Login
               </Link>
             </p>
