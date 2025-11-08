@@ -14,5 +14,5 @@
 }
 
 .liner-text{
-  @apply bg-linear-to-r to-[#27ae60] from-[#16a085] bg-clip-text text-transparent
+  @apply bg-linear-to-r to-[#27ae60] from-[#5352ed] bg-clip-text text-transparent
 }
