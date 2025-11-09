@@ -76,11 +76,11 @@ const Header = () => {
                 tabIndex="-1"
                 className="dropdown-content menu w-fit bg-base-100 rounded-box z-1   p-2 shadow-sm "
               >
-                <li>
+                <li className='mb-2'>
                   <NavLink to="/create">CreateEvent</NavLink>
                 </li>
 
-                <li>
+                <li className='mb-2'>
                   <NavLink to="/manage">ManageEvents</NavLink>
                 </li>
                 <li>

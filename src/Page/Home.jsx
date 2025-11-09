@@ -5,6 +5,8 @@ import useAxios from '../Axios/useAxios';
 import Loader from '../Loading/Loader';
 import Gallery from '../components/Gallery';
 
+import Newsletter from '../components/Newsletter';
+
 const Home = () => {
   const featureData = useAxios();
   const [loading, setLoading] = useState(true);
@@ -43,12 +45,21 @@ const Home = () => {
         </div>
       </section>
 
-      <section className='main'>
-        <div className='text-center mb-[25px]'>
-          <h2 className='title liner-text'>Gallery</h2>
+      <section className="main">
+        <div className="text-center mb-[25px]">
+          <h2 className="title liner-text">Gallery</h2>
         </div>
         <div>
           <Gallery></Gallery>
+        </div>
+      </section>
+
+      <section className="md:max-w-[600px] mx-auto w-full my-[50px] p-2">
+        <div className="mb-[25px] text-center">
+          <h2 className="title liner-text">Newsletter</h2>
+        </div>
+        <div className=" w-full">
+          <Newsletter></Newsletter>
         </div>
       </section>
     </div>

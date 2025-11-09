@@ -21,5 +21,11 @@
 }
 
 .grid-img{
-  @apply h-[300px] w-full object-cover
+  @apply h-[300px] w-full object-cover block
+}
+
+a.active{
+  background-color: rgb(108, 145, 108);
+   color: white;
+   font-weight: bold;
 }
