@@ -1,11 +1,15 @@
 import { createBrowserRouter } from "react-router";
 import Root from "../Layout/Root";
 import Err from "../Err/Err";
-import Home from "../components/Home";
-import UpcomingEvents from "../components/UpcomingEvents";
-import CreateEvent from "../Page/CreateEvent";
+
 import Login from "../Page/Login";
 import Register from "../Page/Register";
+import Home from "../Page/Home";
+import UpcomingEvents from "../Page/UpcomingEvents";
+import ManageEvents from "../Page/ManageEvents";
+import JoinedEvents from "../Page/JoinedEvents";
+import CreateEvents from "../Page/CreateEvents";
+
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +19,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        Component: Home,
+        Component:Home,
       },
       {
         path: '/upcoming',
@@ -23,8 +27,17 @@ export const router = createBrowserRouter([
       },
       {
         path: '/Create',
-        element: <CreateEvent></CreateEvent>,
+        element:<CreateEvents></CreateEvents>
       },
+      {
+        path: '/manage',
+        element:<ManageEvents></ManageEvents>,
+      },
+      {
+        path: '/joined',
+        element:<JoinedEvents></JoinedEvents>,
+      },
+
       {
         path: '/login',
         Component:Login,
@@ -33,6 +46,7 @@ export const router = createBrowserRouter([
         path: '/register',
         Component:Register,
       },
+      
     ],
   },
 ]);

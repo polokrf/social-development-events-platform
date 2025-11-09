@@ -25,8 +25,8 @@ const Header = () => {
     </>
   );
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm">
+    <div className="w-full bg-base-100 shadow-sm">
+      <div className="navbar md:max-w-[1440px] mx-auto w-full ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,9 +53,9 @@ const Header = () => {
               {navLi}
             </ul>
           </div>
-          <h1 className=" liner-text text-xl lg:text-2xl font-bold">
-            Social Development Events Platform
-          </h1>
+          <div className=" liner-text text-xl lg:text-2xl font-bold">
+            <h1 className="liner-text font-bold text-3xl ">SDEP</h1>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLi}</ul>
@@ -74,12 +74,18 @@ const Header = () => {
               />
               <ul
                 tabIndex="-1"
-                className="dropdown-content menu max-w-52 bg-base-100 rounded-box z-1   p-2 shadow-sm "
+                className="dropdown-content menu w-fit bg-base-100 rounded-box z-1   p-2 shadow-sm "
               >
-                <span className="font-bold border-b"> Name</span>
-                <li className="mb-2 text-blue-400">{user?.displayName}</li>
-                <span className="font-bold border-b"> Email</span>
-                <li className=" text-blue-400">{user?.email}</li>
+                <li>
+                  <NavLink to="/create">CreateEvent</NavLink>
+                </li>
+
+                <li>
+                  <NavLink to="/manage">ManageEvents</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/joined">JoinedEvents</NavLink>
+                </li>
               </ul>
             </div>
           </div>

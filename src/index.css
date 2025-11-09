@@ -2,7 +2,7 @@
 @plugin "daisyui";
 
 .main{
-  @apply md:max-w-[1400px] w-full md:my-[50px] my-[30px] p-2 mx-auto
+  @apply md:max-w-[1440px] w-full md:my-[50px] my-[30px] p-2 mx-auto
 }
 
 .grid{

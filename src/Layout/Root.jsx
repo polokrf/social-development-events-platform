@@ -2,6 +2,10 @@ import React from 'react';
 import Header from './Header';
 import { Outlet } from 'react-router';
 import Footer from './Footer';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init();
 
 const Root = () => {
   return (
