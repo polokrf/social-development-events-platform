@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
+
+*{
+   font-family: "Lato", sans-serif;
+}
 .main{
-  @apply md:max-w-[1440px] w-full md:my-[50px] my-[30px] p-2 mx-auto
+  @apply md:max-w-[1200px] w-full md:my-[50px] my-[30px] p-2 mx-auto
 }
 
-.grid{
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6
-}
+
 
 .title {
   @apply md:text-4xl text-3xl font-bold
@@ -15,4 +18,8 @@
 
 .liner-text{
   @apply bg-linear-to-r to-[#27ae60] from-[#5352ed] bg-clip-text text-transparent
+}
+
+.grid-img{
+  @apply h-[300px] w-full object-cover
 }

@@ -5,8 +5,8 @@ import { Link } from 'react-router';
 const Banner = () => {
   return (
     <div className="w-full ">
-      <div className="hero  main">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+      <div className="hero  md:max-w-[1440px] w-full md:my-[50px] my-[30px] p-2 mx-auto">
+        <div className="hero-content flex-col lg:flex-row-reverse gap-4">
           <img
             src={banner}
             className="lg:w-[60%] w-full h-[350px] object-cover rounded-lg shadow-2xl"
