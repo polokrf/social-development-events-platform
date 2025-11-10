@@ -5,9 +5,14 @@ import Loader from '../Loading/Loader';
 import { MdDateRange } from 'react-icons/md';
 import { FaLocationDot } from 'react-icons/fa6';
 import { BiCategoryAlt } from 'react-icons/bi';
+import useInstanceAxios from '../Axios/useInstanceAxios';
+import { toast } from 'react-toastify';
+import useAuth from '../Axios/useAuth';
 
 const EventDetails = () => {
   const instanceData = useAxios();
+  const authInstance = useInstanceAxios()
+   const { user } = useAuth()
   const { id } = useParams();
   const [details,setDetails]=useState()
   const [loading,setLoading]=useState(true)
@@ -21,6 +26,27 @@ const EventDetails = () => {
       console.log(err)
     });
   }, [instanceData, id])
+
+  const handleJoin = () => {
+
+    const joinEvents = {
+      title: details?.title,
+      location:details?.location,
+      event_date:details?.event_date,
+      event_category:details?.event_category,
+      description:details.description,
+      thumbnail: details?.thumbnail,
+      email:user?.email
+    }
+    authInstance.post('/join',joinEvents)
+      .then(data => {
+        
+        toast.success('Successful')
+        setLoading(false)
+      }).catch(err => {
+        console.log(err)
+      })
+  }
   
   if (loading) {
     return <Loader></Loader>
@@ -32,14 +58,13 @@ const EventDetails = () => {
       {/* img and btn */}
       <div>
         <div>
-          <img
-            className=" w-full block mb-4 "
-            src={thumbnail}
-            alt="event"
-          />
+          <img className=" w-full block mb-4 " src={thumbnail} alt="event" />
         </div>
         <div>
-          <button className="btn btn-outline btn-success w-full hidden md:block">
+          <button
+            onClick={handleJoin}
+            className="btn btn-outline btn-success w-full hidden md:block"
+          >
             Join Now
           </button>
         </div>
@@ -83,8 +108,11 @@ const EventDetails = () => {
             <p>{description}</p>
           </div>
 
-          <div className=' mt-3 md:hidden block'>
-            <button className="btn btn-outline btn-success w-full block">
+          <div className=" mt-3 md:hidden block">
+            <button
+              onClick={handleJoin}
+              className="btn btn-outline btn-success w-full block"
+            >
               Join Now
             </button>
           </div>

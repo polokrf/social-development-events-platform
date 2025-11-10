@@ -1,49 +1,71 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import useInstanceAxios from '../Axios/useInstanceAxios';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../Axios/useAuth';
+import useInstanceAxios from '../Axios/useInstanceAxios';
+import DatePicker from 'react-datepicker';
+import { useParams } from 'react-router';
 
-const CreateEvents = () => {
+const UpdateEvents = () => {
+  
   const instance = useInstanceAxios();
-  const {user} = useAuth()
- 
+  const { id } = useParams();
+  const { user } = useAuth();
+  
+  const [dataEvent, setDataEvent] = useState([]);
+  const [loading,setLoading] =useState(true)
+
   const [startDate, setStartDate] = useState(null);
   const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1)
+  tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const handelEvent = (e)=>{
+  useEffect(() => {
+    instance.get(`/events`)
+      .then(data => {
+      
+        setDataEvent(data.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [instance])
+  
+  const updateData = dataEvent.find(data => data._id == id)
+
+ 
+  const handelEventUpdate = (e) => {
     e.preventDefault();
-    const target = e.target
+    const target = e.target;
     const title = target.title.value;
     const select = target.select.value;
     const photo = target.photo.value;
     const location = target.location.value;
     const description = target.description.value;
 
-    const events = {
+    const updateEvents = {
       title: title,
       event_category: select,
       thumbnail: photo,
       location: location,
       description: description,
-      event_date: startDate,
-      email:user?.email
+      event_date:startDate,
+      email: user?.email,
     };
 
-    instance.post('/events', events)
+    instance.put(`/update-event/${id}`, updateEvents)
       .then(data => {
-       
-        toast.success('successful')
-        e.target.reset()
+      console.log(data.data)
       }).catch(err => {
       console.log(err)
     })
+
   }
   return (
+
     <div className=" main">
-      <form onSubmit={handelEvent} className="max-w-[500px] mx-auto p-4 bg-white shadow-lg ">
+      <form
+        onSubmit={handelEventUpdate}
+        className="max-w-[500px] mx-auto p-4 bg-white shadow-lg "
+      >
         <div>
           {/* first div */}
           <div className="md:flex items-center mb-2">
@@ -55,6 +77,7 @@ const CreateEvents = () => {
                 className="input w-full"
                 name="title"
                 id=""
+                defaultValue={updateData?.title}
                 placeholder="title"
               />
             </div>
@@ -62,6 +85,10 @@ const CreateEvents = () => {
             <div className="w-full">
               <label className="label block mb-2">Select-Event</label>
               <select name="select" className="select w-full" id="">
+                <option defaultValue={updateData?.event_category}>
+                  {' '}
+                  {updateData?.event_category}
+                </option>
                 <option value="Cleanup">Cleanup</option>
                 <option value="Plantation">Plantation</option>
                 <option value="Donation">Donation</option>
@@ -81,6 +108,7 @@ const CreateEvents = () => {
                 type="text"
                 className="input w-full"
                 name="photo"
+                defaultValue={updateData?.thumbnail}
                 id=""
                 placeholder="Image_URL"
               />
@@ -95,6 +123,7 @@ const CreateEvents = () => {
                 type="text"
                 className="input w-full"
                 name="location"
+                defaultValue={updateData?.location}
                 id=""
                 placeholder="location"
               />
@@ -116,19 +145,20 @@ const CreateEvents = () => {
           {/* 4th div */}
           <div>
             <fieldset className="fieldset text-center">
-              <legend className='mb-2'>Description</legend>
+              <legend className="mb-2">Description</legend>
               <textarea
                 className="textarea h-24 w-full"
                 name="description"
                 placeholder="Description"
+                defaultValue={updateData?.description}
               ></textarea>
             </fieldset>
           </div>
         </div>
 
         <div className="mt-3">
-          <button className="btn btn-outline btn-success w-full">
-            Create Event
+          <button  className="btn btn-outline btn-success w-full">
+            Update Now
           </button>
         </div>
       </form>
@@ -136,4 +166,4 @@ const CreateEvents = () => {
   );
 };
 
-export default CreateEvents;
+export default UpdateEvents;

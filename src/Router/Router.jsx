@@ -11,6 +11,7 @@ import JoinedEvents from "../Page/JoinedEvents";
 import CreateEvents from "../Page/CreateEvents";
 import PrivetRouter from "../PrivetRout/PrivetRouter";
 import EventDetails from "../Page/EventDetails";
+import UpdateEvents from "../Page/UpdateEvents";
 
 
 export const router = createBrowserRouter([
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/details/:id',
-        Component:EventDetails
+        Component: EventDetails,
       },
 
       {
@@ -42,11 +43,27 @@ export const router = createBrowserRouter([
       },
       {
         path: '/manage',
-        element: <ManageEvents></ManageEvents>,
+        element: (
+          <PrivetRouter>
+            <ManageEvents></ManageEvents>
+          </PrivetRouter>
+        ),
       },
       {
         path: '/joined',
-        element: <JoinedEvents></JoinedEvents>,
+        element: (
+          <PrivetRouter>
+            <JoinedEvents></JoinedEvents>
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: '/update-event/:id',
+        element: (
+          <PrivetRouter>
+           <UpdateEvents></UpdateEvents>
+          </PrivetRouter>
+        ),
       },
 
       {
