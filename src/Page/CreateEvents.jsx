@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import useInstanceAxios from '../Axios/useInstanceAxios';
+import { toast } from 'react-toastify';
 
 const CreateEvents = () => {
+  const instance = useInstanceAxios();
+ 
   const [startDate, setStartDate] = useState(null);
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1)
@@ -15,7 +19,24 @@ const CreateEvents = () => {
     const photo = target.photo.value;
     const location = target.location.value;
     const description = target.description.value;
-    console.log('i am here',title,select,photo,location,description)
+
+    const events = {
+      title: title,
+      event_category: select,
+      thumbnail: photo,
+      location: location,
+      description: description,
+      event_date: startDate,
+    };
+
+    instance.post('/events', events)
+      .then(data => {
+       
+        toast.success('successful')
+        e.target.reset()
+      }).catch(err => {
+      console.log(err)
+    })
   }
   return (
     <div className=" main">

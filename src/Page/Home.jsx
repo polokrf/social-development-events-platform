@@ -14,7 +14,7 @@ const Home = () => {
   const [features,setFeatures]=useState([])
 
   useEffect(() => {
-    featureData.get('/Feature')
+    featureData.get('/feature')
       .then(data => {
         
         setFeatures(data.data)

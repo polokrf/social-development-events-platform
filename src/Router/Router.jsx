@@ -9,6 +9,8 @@ import UpcomingEvents from "../Page/UpcomingEvents";
 import ManageEvents from "../Page/ManageEvents";
 import JoinedEvents from "../Page/JoinedEvents";
 import CreateEvents from "../Page/CreateEvents";
+import PrivetRouter from "../PrivetRout/PrivetRouter";
+import EventDetails from "../Page/EventDetails";
 
 
 export const router = createBrowserRouter([
@@ -19,34 +21,42 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        Component:Home,
+        Component: Home,
       },
       {
         path: '/upcoming',
         Component: UpcomingEvents,
       },
       {
+        path: '/details/:id',
+        Component:EventDetails
+      },
+
+      {
         path: '/Create',
-        element:<CreateEvents></CreateEvents>
+        element: (
+          <PrivetRouter>
+            <CreateEvents></CreateEvents>
+          </PrivetRouter>
+        ),
       },
       {
         path: '/manage',
-        element:<ManageEvents></ManageEvents>,
+        element: <ManageEvents></ManageEvents>,
       },
       {
         path: '/joined',
-        element:<JoinedEvents></JoinedEvents>,
+        element: <JoinedEvents></JoinedEvents>,
       },
 
       {
         path: '/login',
-        Component:Login,
+        Component: Login,
       },
       {
         path: '/register',
-        Component:Register,
+        Component: Register,
       },
-      
     ],
   },
 ]);
