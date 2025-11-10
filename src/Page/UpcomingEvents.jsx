@@ -40,21 +40,23 @@ const UpcomingEvents = () => {
 
    
   };
-  // const handleSerch = e => {
-  //   e.preventDefault()
+  const handelSearch = e => {
+    e.preventDefault();
 
-  //   const event = e.target.filterType.value;
-  //   console.log(event);
+    const title = e.target.title.value;
+   
 
-  //   instance.get(`/event-filter?event_category=${event}`)
-  //     .then(data => {
-  //       setEvents(data.data);
-  //       setRefres(!refres);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
+    instance
+      .get(`/event-search?title=${title}`)
+      .then(data => {
+        if (data.data) {
+          setEvents(data.data);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   
   if (loading) {
     return <Loader></Loader>
@@ -66,41 +68,46 @@ const UpcomingEvents = () => {
       <div className="mb-[35px] text-center">
         <h2 className="title liner-text">Upcoming Events</h2>
       </div>
-      <div className="flex justify-between p2">
-        <form onSubmit={handleFilter}>
-          <label className="label block mb-2">Filter-Category</label>
-          <select name="filterType" className="select mb-4" id="">
-            <option value="">Select Now</option>
-            <option value="Cleanup">Cleanup</option>
-            <option value="Plantation">Plantation</option>
-            <option value="Donation">Donation</option>
-            <option value="Awareness-Campaign">Awareness-Campaign</option>
-            <option value="Educational-Workshop">Educational-Workshop</option>
-          </select>
-          <button className="btn">Filter</button>
+      <div className="md:flex justify-between p2">
+        <form onSubmit={handleFilter} className='flex'>
+          <div className='mr-3 w-full '>
+           
+            <select name="filterType" className="select mb-4 rounded-full" id="">
+              <option value="">Select Now</option>
+              <option value="Cleanup">Cleanup</option>
+              <option value="Plantation">Plantation</option>
+              <option value="Donation">Donation</option>
+              <option value="Awareness-Campaign">Awareness-Campaign</option>
+              <option value="Educational-Workshop">Educational-Workshop</option>
+            </select>
+          </div>
+          <button className="btn btn-info rounded-full">Filter</button>
         </form>
+        {/* search form */}
         <div>
-          <form>
-            <label className="label block mb-2">Search Now</label>
-            <label className="input">
-              <svg
-                className="h-[1em] opacity-50"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2.5"
-                  fill="none"
-                  stroke="currentColor"
+          <form onSubmit={handelSearch} className="flex">
+            <div className="mr-3 w-full">
+              <label className="input rounded-full mb-4 ">
+                <svg
+                  className="h-[1em] opacity-50"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
                 >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.3-4.3"></path>
-                </g>
-              </svg>
-              <input type="search" required placeholder="Search" />
-            </label>
+                  <g
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2.5"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                  </g>
+                </svg>
+                <input type="search" name='title' required placeholder="Search"  />
+              </label>
+            </div>
+            <button className="btn btn-info  rounded-full">Search</button>
           </form>
         </div>
       </div>
