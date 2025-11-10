@@ -11,7 +11,7 @@ const UpcomingEvents = () => {
   
   useEffect(() => {
    instance
-     .get('/events')
+     .get('/events-upcoming')
      .then(data => {
        setEvents(data.data);
        setLoading(false);
@@ -46,8 +46,7 @@ const UpcomingEvents = () => {
     const title = e.target.title.value;
    
 
-    instance
-      .get(`/event-search?title=${title}`)
+    instance.get(`/event-search?title=${title}`)
       .then(data => {
         if (data.data) {
           setEvents(data.data);

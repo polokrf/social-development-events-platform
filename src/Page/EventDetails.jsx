@@ -41,8 +41,13 @@ const EventDetails = () => {
     authInstance.post('/join',joinEvents)
       .then(data => {
         
-        toast.success('Successful')
-        setLoading(false)
+        if (data.data) {
+           toast.success('Successful');
+        } else {
+          toast.error('Login / register plz')
+       }
+       
+         setLoading(false);
       }).catch(err => {
         console.log(err)
       })

@@ -12,13 +12,14 @@ const GoogleBtn = () => {
       .then(res => {
         toast.success('Successful')
         navigate(`${location.state || '/'}`);
+        console.log(res.user)
       }).catch(err => {
       toast.error(err.message)
     })
   }
   return (
     <div>
-      <button onClick={handleClick} className=" btn btn-outline btn-success  w-full  ">
+      <button type='button' onClick={handleClick} className=" btn btn-outline btn-success  w-full  ">
         <svg
           aria-label="Google logo"
           width="16"

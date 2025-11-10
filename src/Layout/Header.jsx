@@ -67,26 +67,28 @@ const Header = () => {
             <div className="dropdown mr-2">
               <img
                 tabIndex={0}
-                className="w-[50px] h-[50px] rounded-full"
+                className={user && 'w-[50px] h-[50px] rounded-full'}
                 src={user?.photoURL}
                 alt=""
                 title={user?.displayName}
               />
-              <ul
-                tabIndex="-1"
-                className="dropdown-content menu w-fit bg-base-100 rounded-box z-1   p-2 shadow-sm "
-              >
-                <li className='mb-2'>
-                  <NavLink to="/create">CreateEvent</NavLink>
-                </li>
+              {user && (
+                <ul
+                  tabIndex="-1"
+                  className="dropdown-content menu w-fit bg-base-100 rounded-box z-1   p-2 shadow-sm "
+                >
+                  <li className="mb-2">
+                    <NavLink to="/create">CreateEvent</NavLink>
+                  </li>
 
-                <li className='mb-2'>
-                  <NavLink to="/manage">ManageEvents</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/joined">JoinedEvents</NavLink>
-                </li>
-              </ul>
+                  <li className="mb-2">
+                    <NavLink to="/manage">ManageEvents</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/joined">JoinedEvents</NavLink>
+                  </li>
+                </ul>
+              )}
             </div>
           </div>
           {/* link in login page or logout */}
