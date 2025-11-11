@@ -41,12 +41,11 @@ const EventDetails = () => {
     }
     authInstance.post('/join',joinEvents)
       .then(data => {
-        
-        if (data.data) {
-           toast.success('Successful');
+       if (data.data.insertedId) {
+          toast.success('Successful');
         } else {
-          toast.error('Login / register plz')
-       }
+          toast.error('Login / register plz');
+        }
        
          setLoading(false);
       }).catch(err => {
