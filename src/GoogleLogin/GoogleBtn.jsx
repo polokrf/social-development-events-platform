@@ -12,7 +12,7 @@ const GoogleBtn = () => {
       .then(res => {
         toast.success('Successful')
         navigate(`${location.state || '/'}`);
-        console.log(res.user)
+       
       }).catch(err => {
       toast.error(err.message)
     })

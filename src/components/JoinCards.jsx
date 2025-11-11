@@ -1,19 +1,41 @@
 import React from 'react';
 import useInstanceAxios from '../Axios/useInstanceAxios';
+import Swal from 'sweetalert2';
 
 const JoinCards = ({ joinData, setClean,clean }) => {
   const instance = useInstanceAxios();
 
   const handleRemove = id => {
-    instance
-      .delete(`/delete-join/${id}`)
-      .then(data => {
-        console.log(data.data);
-        setClean(!clean)
-      })
-      .catch(err => {
-        console.log(err);
-      });
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Remove it!',
+    }).then(result => {
+      if (result.isConfirmed) {
+
+         instance
+           .delete(`/delete-join/${id}`)
+           .then(data => {
+             console.log(data.data)
+              Swal.fire({
+                title: 'Remove!',
+                text: 'Your file has been Remove.',
+                icon: 'success',
+              });
+             setClean(!clean);
+           })
+           .catch(err => {
+             console.log(err);
+           });
+       
+      }
+    });
+   
   };
   return (
     <div className="bg-gray-50 p-4 rounded-2xl">

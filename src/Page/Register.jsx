@@ -80,6 +80,7 @@ const Register = () => {
                 name="email"
                 className="input"
                 placeholder="Email"
+                required
               />
               {/* password
                */}
@@ -90,6 +91,7 @@ const Register = () => {
                   name='password'
                   className="input"
                   placeholder="Password"
+                  required
                 />
                 <div className=' absolute top-2 right-5'>
                   <button onClick={handleShow} className='btn btn-xs'>

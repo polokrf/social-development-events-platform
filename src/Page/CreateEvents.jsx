@@ -59,6 +59,7 @@ const CreateEvents = () => {
                 name="title"
                 id=""
                 placeholder="title"
+                required
               />
             </div>
             {/* event */}
@@ -66,7 +67,7 @@ const CreateEvents = () => {
               <label className="label block mb-2 text-white">
                 Select-Event
               </label>
-              <select name="select" className="select w-full" id="">
+              <select name="select" required className="select w-full" id="">
                 <option value="Cleanup">Cleanup</option>
                 <option value="Plantation">Plantation</option>
                 <option value="Donation">Donation</option>
@@ -91,6 +92,7 @@ const CreateEvents = () => {
                 name="photo"
                 id=""
                 placeholder="Image_URL"
+                required
               />
             </div>
           </div>
@@ -105,6 +107,7 @@ const CreateEvents = () => {
                 name="location"
                 id=""
                 placeholder="location"
+                required
               />
             </div>
             {/* Date */}
@@ -117,6 +120,7 @@ const CreateEvents = () => {
                 className="input w-full"
                 minDate={tomorrow}
                 placeholderText="Select future date"
+                required
               ></DatePicker>
             </div>
           </div>
@@ -129,6 +133,7 @@ const CreateEvents = () => {
                 className="textarea h-24 w-full"
                 name="description"
                 placeholder="Description"
+                required
               ></textarea>
             </fieldset>
           </div>
