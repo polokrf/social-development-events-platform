@@ -1,9 +1,17 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const Newsletter = () => {
+
+  const handelSubscribe = (e) => {
+    e.preventDefault();
+    toast.success('Successful')
+    e.target.reset()
+  }
+
   return (
     <div>
-      <form className="w-full bg-[#0a192f]  p-4 rounded-2xl shadow">
+      <form onSubmit={handelSubscribe} className="w-full bg-[#0a192f]  p-4 rounded-2xl shadow">
         <div className="text-center mb-[25px]">
           <h1 className="font-bold text-2xl text-white">Subscribe to our Newsletter</h1>
         </div>
@@ -14,6 +22,7 @@ const Newsletter = () => {
           name=""
           id=""
           placeholder="Name"
+          required
         />
         <label className="label block font-bold mb-2 text-white">Email</label>
         <input
@@ -22,6 +31,7 @@ const Newsletter = () => {
           name=""
           id=""
           placeholder="Email"
+          required
         />
         <div>
           <label className="label block font-bold my-2 text-white">Interest</label>
