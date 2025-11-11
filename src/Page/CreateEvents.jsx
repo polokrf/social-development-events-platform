@@ -43,13 +43,16 @@ const CreateEvents = () => {
   }
   return (
     <div className=" main">
-      <form onSubmit={handelEvent} className="max-w-[500px] mx-auto p-4 bg-white shadow-lg ">
+      <form
+        onSubmit={handelEvent}
+        className="max-w-[500px] mx-auto p-4 bg-[#0a192f] shadow-lg "
+      >
         <div>
           {/* first div */}
           <div className="md:flex items-center mb-2">
             {/* title */}
             <div className="w-full mr-2">
-              <label className="label block mb-2">Title</label>
+              <label className="label block mb-2 text-white">Title</label>
               <input
                 type="text"
                 className="input w-full"
@@ -60,12 +63,15 @@ const CreateEvents = () => {
             </div>
             {/* event */}
             <div className="w-full">
-              <label className="label block mb-2">Select-Event</label>
+              <label className="label block mb-2 text-white">
+                Select-Event
+              </label>
               <select name="select" className="select w-full" id="">
                 <option value="Cleanup">Cleanup</option>
                 <option value="Plantation">Plantation</option>
                 <option value="Donation">Donation</option>
-                <option value="Awareness Campaign">Awareness-Campaign</option>
+                <option value="Awareness">Awareness</option>
+                <option value="Health">Health</option>
                 <option value="Educational Workshop">
                   Educational-Workshop
                 </option>
@@ -76,7 +82,9 @@ const CreateEvents = () => {
           <div>
             {/* thumbnail Image URL */}
             <div className="mb-2">
-              <label className="label block mb-2">thumbnail Image_URL</label>
+              <label className="label block mb-2 text-white">
+                thumbnail Image_URL
+              </label>
               <input
                 type="text"
                 className="input w-full"
@@ -90,7 +98,7 @@ const CreateEvents = () => {
           <div>
             {/* location */}
             <div className="w-full  mb-2">
-              <label className="label block mb-2">location</label>
+              <label className="label block mb-2 text-white">location</label>
               <input
                 type="text"
                 className="input w-full"
@@ -102,7 +110,7 @@ const CreateEvents = () => {
             {/* Date */}
 
             <div>
-              <label className="label block mb-2">Date</label>
+              <label className="label block mb-2 text-white">Date</label>
               <DatePicker
                 selected={startDate}
                 onChange={date => setStartDate(date)}
@@ -116,7 +124,7 @@ const CreateEvents = () => {
           {/* 4th div */}
           <div>
             <fieldset className="fieldset text-center">
-              <legend className='mb-2'>Description</legend>
+              <legend className="mb-2 text-white">Description</legend>
               <textarea
                 className="textarea h-24 w-full"
                 name="description"

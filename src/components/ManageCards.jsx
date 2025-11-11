@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import useInstanceAxios from '../Axios/useInstanceAxios';
+import { MdDateRange } from 'react-icons/md';
 
 const ManageCards = ({ data, setClear, clear }) => {
   const instance = useInstanceAxios();
@@ -17,17 +18,26 @@ const ManageCards = ({ data, setClear, clear }) => {
   };
 
   return (
-    <div className="">
-      <div className="card md:card-side  bg-base-100 shadow-sm  flex">
-        <div>
+    <div>
+      <div className="card md:card-side  bg-base-100 shadow-sm  h-full flex ">
+        <div className=" w-full md:w-[50%]">
           <img
-            className=" h-[300px] md:h-full object-cover"
+            className=" h-[300px] w-full md:h-full object-cover"
             src={data.thumbnail}
             alt="event"
           />
         </div>
-        <div className="card-body">
-          <h2 className="card-title capitalize">{data.title}</h2>
+        <div className="card-body w-full  md:w-[70%]">
+         
+            <h2 className="card-title capitalize">{data.title}</h2>
+            <p className="flex items-center">
+              <MdDateRange />
+              <span className="ml-1">
+                {' '}
+                {new Date(data.event_date).toISOString().split('T')[0]}
+              </span>
+            </p>
+          
           <p>{data.description}</p>
           <div className="card-actions justify-end mt-3">
             <Link

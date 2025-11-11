@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import useAuth from '../Axios/useAuth';
 import useInstanceAxios from '../Axios/useInstanceAxios';
 import DatePicker from 'react-datepicker';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { toast } from 'react-toastify';
 
 const UpdateEvents = () => {
   
   const instance = useInstanceAxios();
   const { id } = useParams();
   const { user } = useAuth();
+  const navigate =useNavigate()
   
   const [dataEvent, setDataEvent] = useState([]);
   const [loading,setLoading] =useState(true)
@@ -18,9 +20,8 @@ const UpdateEvents = () => {
   tomorrow.setDate(tomorrow.getDate() + 1);
 
   useEffect(() => {
-    instance.get(`/events`)
+    instance.get(`/events-upcoming`)
       .then(data => {
-      
         setDataEvent(data.data);
         setLoading(false);
       })
@@ -29,7 +30,7 @@ const UpdateEvents = () => {
       });
   }, [instance])
   
-  const updateData = dataEvent.find(data => data._id == id)
+  const updateData =Array.isArray(dataEvent) && dataEvent.find(data => data._id == id)
 
  
   const handelEventUpdate = (e) => {
@@ -53,25 +54,28 @@ const UpdateEvents = () => {
 
     instance.put(`/update-event/${id}`, updateEvents)
       .then(data => {
-      console.log(data.data)
+        if (data.data) {
+           toast.success('successful');
+           navigate('/manage');
+        }
+       
       }).catch(err => {
       console.log(err)
     })
 
   }
   return (
-
     <div className=" main">
       <form
         onSubmit={handelEventUpdate}
-        className="max-w-[500px] mx-auto p-4 bg-white shadow-lg "
+        className="max-w-[500px] mx-auto p-4 bg-[#001f3f] shadow-lg "
       >
         <div>
           {/* first div */}
           <div className="md:flex items-center mb-2">
             {/* title */}
             <div className="w-full mr-2">
-              <label className="label block mb-2">Title</label>
+              <label className="label block mb-2 text-white">Title</label>
               <input
                 type="text"
                 className="input w-full"
@@ -83,7 +87,9 @@ const UpdateEvents = () => {
             </div>
             {/* event */}
             <div className="w-full">
-              <label className="label block mb-2">Select-Event</label>
+              <label className="label block mb-2 text-white">
+                Select-Event
+              </label>
               <select name="select" className="select w-full" id="">
                 <option defaultValue={updateData?.event_category}>
                   {' '}
@@ -103,7 +109,9 @@ const UpdateEvents = () => {
           <div>
             {/* thumbnail Image URL */}
             <div className="mb-2">
-              <label className="label block mb-2">thumbnail Image_URL</label>
+              <label className="label block mb-2 text-white">
+                thumbnail Image_URL
+              </label>
               <input
                 type="text"
                 className="input w-full"
@@ -118,7 +126,7 @@ const UpdateEvents = () => {
           <div>
             {/* location */}
             <div className="w-full  mb-2">
-              <label className="label block mb-2">location</label>
+              <label className="label block mb-2 text-white">location</label>
               <input
                 type="text"
                 className="input w-full"
@@ -131,7 +139,7 @@ const UpdateEvents = () => {
             {/* Date */}
 
             <div>
-              <label className="label block mb-2">Date</label>
+              <label className="label block mb-2 text-white">Date</label>
               <DatePicker
                 selected={startDate}
                 onChange={date => setStartDate(date)}
@@ -145,7 +153,7 @@ const UpdateEvents = () => {
           {/* 4th div */}
           <div>
             <fieldset className="fieldset text-center">
-              <legend className="mb-2">Description</legend>
+              <legend className="mb-2 text-white">Description</legend>
               <textarea
                 className="textarea h-24 w-full"
                 name="description"
@@ -157,7 +165,7 @@ const UpdateEvents = () => {
         </div>
 
         <div className="mt-3">
-          <button  className="btn btn-outline btn-success w-full">
+          <button className="btn btn-outline btn-success w-full">
             Update Now
           </button>
         </div>

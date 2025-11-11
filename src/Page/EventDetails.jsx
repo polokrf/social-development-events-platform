@@ -8,6 +8,7 @@ import { BiCategoryAlt } from 'react-icons/bi';
 import useInstanceAxios from '../Axios/useInstanceAxios';
 import { toast } from 'react-toastify';
 import useAuth from '../Axios/useAuth';
+import { TypeAnimation } from 'react-type-animation';
 
 const EventDetails = () => {
   const instanceData = useAxios();
@@ -80,10 +81,12 @@ const EventDetails = () => {
           {/* title and category */}
           <div className="flex justify-between items-center mb-3">
             <div>
-              <h2 className="card-title inline-block  capitalize">{title}</h2>
+              <h2 className="card-title inline-block  capitalize text-black">
+                {title}
+              </h2>
             </div>
             <div>
-              <p className="flex items-center">
+              <p className="flex items-center text-black">
                 <BiCategoryAlt color="blue" />{' '}
                 <span className="ml-2 badge badge-info text-white capitalize">
                   {event_category}
@@ -94,13 +97,13 @@ const EventDetails = () => {
           {/* location and date */}
           <div className="flex justify-between items-center mb-3">
             <div>
-              <p className="flex items-center">
+              <p className="flex items-center text-black">
                 <FaLocationDot color="blue" />
                 <span className="ml-1 capitalize "> {location}</span>
               </p>
             </div>
             <div>
-              <p className="flex items-center">
+              <p className="flex items-center text-black">
                 <MdDateRange />
                 <span className="ml-1">
                   {' '}
@@ -109,7 +112,7 @@ const EventDetails = () => {
               </p>
             </div>
           </div>
-          <div className="mt-4">
+          <div className="mt-4 text-black">
             <p>{description}</p>
           </div>
 
@@ -123,8 +126,16 @@ const EventDetails = () => {
           </div>
         </div>
         <div className="flex justify-center items-center mt-[50px]">
-          <h2 className="font-semibold capitalize text-xl hidden md:block ">
-            you can join if you want
+          <h2 className="font-semibold capitalize text-xl hidden md:block text-black ">
+            <TypeAnimation
+              sequence={[
+                '  you can join if you want',
+
+                500,
+                ' you can join if you want',
+              ]}
+              repeat={Infinity}
+            ></TypeAnimation>
           </h2>
         </div>
       </div>

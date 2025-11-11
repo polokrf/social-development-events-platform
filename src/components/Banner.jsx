@@ -1,22 +1,29 @@
 import React from 'react';
 import banner from '../assets/7415191.jpg'
 import { Link } from 'react-router';
+import { TypeAnimation } from 'react-type-animation';
 
 const Banner = () => {
   return (
-    <div className="w-full ">
-      <div className="hero  md:max-w-[1440px] w-full md:my-[50px] my-[30px] p-2 mx-auto">
-        <div className="hero-content flex-col lg:flex-row-reverse gap-4">
-          <img
-            src={banner}
-            className="lg:w-[60%] w-full h-[350px] object-cover rounded-lg shadow-2xl"
-          />
+    <div className="w-full bg-sky-100">
+      <div className="hero  md:max-w-[700px] w-full md:py-[50px] py-[30px] mb-[45px] p-2 mx-auto">
+        <div className="hero-content gap-4">
+          
 
           <div data-aos="fade-up">
-            <h1 className="lg:text-5xl text-3xl font-bold liner-text">
-              Social Development Events Platform
+            <h1 className=" md:text-4xl text-3xl font-bold liner-text">
+              <TypeAnimation
+                sequence={[
+                  ' Social Development Events Platform',
+
+                  500,
+                  'Social Development Events Platform',
+                ]}
+               
+               repeat={Infinity}
+              ></TypeAnimation>
             </h1>
-            <p className="py-6">
+            <p className="py-6 text-black">
               Social Development Events Platform (SDEP) connects people,
               organizations, and communities through impactful social events.
               Join, organize, or support initiatives that drive positive change
@@ -24,7 +31,7 @@ const Banner = () => {
               in one place.
             </p>
 
-            <Link className="btn btn-outline btn-success" to="/register">
+            <Link className="btn btn-outline btn-success text-blue-500" to="/register">
               Register
             </Link>
           </div>

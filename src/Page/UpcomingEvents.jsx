@@ -68,10 +68,13 @@ const UpcomingEvents = () => {
         <h2 className="title liner-text">Upcoming Events</h2>
       </div>
       <div className="md:flex justify-between p2">
-        <form onSubmit={handleFilter} className='flex'>
-          <div className='mr-3 w-full '>
-           
-            <select name="filterType" className="select mb-4 rounded-full" id="">
+        <form onSubmit={handleFilter} className="flex">
+          <div className="mr-3 w-full ">
+            <select
+              name="filterType"
+              className="select mb-4 rounded-full"
+              id=""
+            >
               <option value="">Select Now</option>
               <option value="Cleanup">Cleanup</option>
               <option value="Plantation">Plantation</option>
@@ -103,20 +106,31 @@ const UpcomingEvents = () => {
                     <path d="m21 21-4.3-4.3"></path>
                   </g>
                 </svg>
-                <input type="search" name='title' required placeholder="Search"  />
+                <input
+                  type="search"
+                  name="title"
+                  required
+                  placeholder="Search"
+                />
               </label>
             </div>
             <button className="btn btn-info  rounded-full">Search</button>
           </form>
         </div>
       </div>
-
       <div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  justify-center items-center gap-4 p-2">
-          {events.map(event => (
-            <Events key={event._id} event={event}></Events>
-          ))}
-        </div>
+        {events.length === 0
+          ? (<div className="flex justify-center items-center mt-[45px]">
+              <h2 className=" capitalize text-2xl text-red-500 font-bold">
+                No event updates have arrived yet. But you can create one if you
+                want.
+              </h2>
+            </div>)
+          : (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  justify-center items-center gap-4 p-2">
+              {events.map(event => (
+                <Events key={event._id} event={event}></Events>
+              ))}
+            </div>)}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ const JoinCards = ({joinData}) => {
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead>
+          <thead className='text-black'>
             <tr>
               <th>SL</th>
               <th>Event Img</th>
@@ -15,7 +15,7 @@ const JoinCards = ({joinData}) => {
               <th>Event Date</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className='text-black'>
             {/* row 1 */}
             {joinData.map((data, index) => (
               <tr key={data._id}>

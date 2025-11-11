@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../Axios/useAuth';
 import { toast } from 'react-toastify';
 
 const Header = () => {
-  const { user,logOut } = useAuth();
+  const { user, logOut } = useAuth();
+  
+  const [them,setThem] = useState(localStorage.getItem('theme') || 'light')
 
   const handleLogOut = () => {
     logOut().then(()=>{
@@ -12,6 +14,18 @@ const Header = () => {
     }).catch(err => {
       toast.error(err.message)
     })
+  }
+
+  useEffect(() => {
+    const html = document.querySelector('html');
+    html.setAttribute("data-theme", them);
+    localStorage.setItem('theme', them)
+  },[them])
+
+  const handleTheme = check=> {
+    setThem(check ? 'dark' : 'light')
+    
+    console.log(check)
   }
 
   const navLi = (
@@ -53,8 +67,14 @@ const Header = () => {
               {navLi}
             </ul>
           </div>
-          <div className=" liner-text text-xl lg:text-2xl font-bold">
-            <h1 className="liner-text font-bold text-3xl ">SDEP</h1>
+          <div className=" liner-text text-xl lg:text-2xl font-bold flex items-center">
+            <h1 className="liner-text font-bold text-3xl mr-2">SDEP</h1>
+            <input
+              onChange={e => handleTheme(e.target.checked)}
+              type="checkbox"
+              defaultChecked={localStorage.getItem('theme') === 'dark'}
+              className="toggle"
+            />
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">

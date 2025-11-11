@@ -29,16 +29,21 @@ const ManageEvents = () => {
       <div className="text-center mb-[30px]">
         <h2 className="title liner-text capitalize">My Events</h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2  justify-center items-stretch gap-4 ">
-        {manageData.map(data => (
-          <ManageCards
-            key={data._id}
-            data={data}
-            setClear={setClear}
-            clear={clear}
-          ></ManageCards>
-        ))}
-      </div>
+      {manageData.length === 0? (<div className="flex justify-center items-center mt-[45px] ">
+            <h1 className="text-2xl font-bold capitalize text-red-600">
+              You haven`<span className=" lowercase">t</span> create any event
+            </h1>
+          </div>)
+        : (<div className="grid grid-cols-1 md:grid-cols-2  justify-center items-stretch gap-4 ">
+            {manageData.map(data => (
+              <ManageCards
+                key={data._id}
+                data={data}
+                setClear={setClear}
+                clear={clear}
+              ></ManageCards>
+            ))}
+          </div>)}
     </div>
   );
 };

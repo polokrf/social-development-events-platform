@@ -1,0 +1,38 @@
+[
+  {
+    "id":1,
+    "title": "Create and Manage Events",
+    "description": "Easily create, update, and manage social events like cleanups, donations, or awareness campaigns with an intuitive interface.",
+    "image": "https://i.ibb.co.com/SwsyP27M/Gemini-Generated-Image-pm2q2mpm2q2mpm2q.png"
+  },
+  {
+    "id": 2,
+    "title": "Join Community Activities",
+    "description": "Find and participate in meaningful community events around you to make a positive social impact.",
+    "image": "https://i.ibb.co.com/R4Mhnj4k/young-activists-taking-action.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Track Your Contributions",
+    "description": "Monitor your participation and track the number of events you’ve joined or organized in your profile dashboard.",
+    "image": "https://i.ibb.co.com/YFd04rZh/man-posing-with-phone-newspaper.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Discover Upcoming Events",
+    "description": "Stay informed about upcoming social events happening in your area and never miss a chance to contribute.",
+    "image": "https://i.ibb.co.com/vx3dyxPQ/Gemini-Generated-Image-plnmbdplnmbdplnm.png"
+  },
+  {
+    "id": 5,
+    "title": "Collaborate with Volunteers",
+    "description": "Connect with other volunteers and organizations to collaborate on impactful community development activities.",
+    "image": "https://i.ibb.co.com/S4rjRtkP/environment-volunteer-concept-with-persons-holding-boxes-donations.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Secure User Authentication",
+    "description": "Users can safely register and log in using secure authentication, ensuring all personal data and event activities remain protected.",
+    "image": "https://i.ibb.co.com/yjjDhBk/woman-working-computer-network-graphic-overlay.jpg"
+  }
+]

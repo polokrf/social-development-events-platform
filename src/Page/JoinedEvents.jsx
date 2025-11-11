@@ -26,12 +26,18 @@ const JoinedEvents = () => {
 
   return (
     <div className="main">
-      <div className='text-center mb-[30px]'>
-        <h2 className='title liner-text capitalize'>Your joined events</h2>
+      <div className="text-center mb-[30px]">
+        <h2 className="title liner-text capitalize">Your joined events</h2>
       </div>
-      <div>
-        <JoinCards joinData={joinData}></JoinCards>
-      </div>
+      {joinData.length === 0
+        ? (<div className="flex justify-center items-center mt-[45px]">
+            <h2 className=" capitalize text-2xl font-bold text-red-600">
+              you haven`<span className=" lowercase">t</span> joined any events
+            </h2>
+          </div>)
+        : (<div>
+            <JoinCards joinData={joinData}></JoinCards>
+          </div>)}
     </div>
   );
 };

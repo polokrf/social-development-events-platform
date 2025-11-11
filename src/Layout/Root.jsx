@@ -9,7 +9,7 @@ AOS.init();
 
 const Root = () => {
   return (
-    <div className="flex flex-col  justify-center min-h-screen bg-linear-to-l   from-sky-100  to-purple-100">
+    <div className="flex flex-col  justify-center min-h-screen   bg-linear-to-l   from-sky-100  to-purple-100">
       <div>
         <Header></Header>
       </div>
