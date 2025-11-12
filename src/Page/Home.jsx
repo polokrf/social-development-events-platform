@@ -18,8 +18,8 @@ const Home = () => {
   
  
   return (
-    <div>
-      <header>
+    <div className='overflow-hidden'>
+      <header className='w-full'>
         <Banner></Banner>
       </header>
 

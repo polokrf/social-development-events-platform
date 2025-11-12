@@ -1,5 +1,5 @@
 import React from 'react';
-import banner from '../assets/7415191.jpg'
+
 import { Link } from 'react-router';
 import { TypeAnimation } from 'react-type-animation';
 
