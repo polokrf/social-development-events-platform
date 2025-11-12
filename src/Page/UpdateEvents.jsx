@@ -146,6 +146,7 @@ const UpdateEvents = () => {
                 className="input w-full"
                 minDate={tomorrow}
                 placeholderText="Select future date"
+                required
               ></DatePicker>
             </div>
           </div>
