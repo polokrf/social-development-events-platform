@@ -1,6 +1,6 @@
 1.website Name : Social Development Events Platform;
 
-2.live URL on client side : social-development-events.pages.dev
+2.live URL on client side :https://social-development-events.pages.dev
 
 3.My  website feature
 1. Users can easily register or log in to the website.
