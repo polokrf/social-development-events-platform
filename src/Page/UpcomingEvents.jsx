@@ -119,18 +119,12 @@ const UpcomingEvents = () => {
         </div>
       </div>
       <div>
-        {events.length === 0
-          ? (<div className="flex justify-center items-center mt-[45px]">
-              <h2 className=" capitalize text-2xl text-red-500 font-bold">
-                No event updates have arrived yet. But you can create one if you
-                want.
-              </h2>
-            </div>)
-          : (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  justify-center items-center gap-4 p-2">
+       
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  justify-center items-center gap-4 p-2">
               {events.map(event => (
                 <Events key={event._id} event={event}></Events>
               ))}
-            </div>)}
+            </div>
       </div>
     </div>
   );
