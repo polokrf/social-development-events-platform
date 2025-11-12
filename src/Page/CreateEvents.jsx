@@ -127,8 +127,8 @@ const CreateEvents = () => {
 
           {/* 4th div */}
           <div>
-            <fieldset className="fieldset text-center">
-              <legend className="mb-2 text-white">Description</legend>
+            <fieldset className="fieldset text-center mt-2">
+              <legend className="mb-2 text-white ">Description</legend>
               <textarea
                 className="textarea h-24 w-full"
                 name="description"

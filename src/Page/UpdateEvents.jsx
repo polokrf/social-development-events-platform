@@ -152,7 +152,7 @@ const UpdateEvents = () => {
 
           {/* 4th div */}
           <div>
-            <fieldset className="fieldset text-center">
+            <fieldset className="fieldset text-center mt-2">
               <legend className="mb-2 text-white">Description</legend>
               <textarea
                 className="textarea h-24 w-full"
