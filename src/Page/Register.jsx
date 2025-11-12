@@ -5,7 +5,7 @@ import useAuth from '../Axios/useAuth';
 import { toast } from 'react-toastify';
 
 const Register = () => {
-  const { register, updateUser } = useAuth();
+  const { register, updateUser,setUser } = useAuth();
   const navigate = useNavigate()
   const [show, setShow] = useState(false);
 
@@ -33,7 +33,11 @@ const Register = () => {
     register(email, password)
       .then(res => {
         toast.success('Successful')
-        updateUser(person)
+        updateUser(person).then(() => {
+          setUser(res.user)
+        }).catch(err => {
+         err
+        })
         navigate('/')
       }).catch(err => {
       toast.error(err.message)
