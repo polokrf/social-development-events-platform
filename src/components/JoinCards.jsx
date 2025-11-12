@@ -79,7 +79,7 @@ const JoinCards = ({ joinData, setClean,clean }) => {
                     {data.title}
                   </h3>
                 </td>
-                <td className="font-semibold text-[10px] md:text-[16px]">
+                <td className="md:font-semibold text-[10px] md:text-[16px]">
                   {data.location}
                 </td>
                 <th>

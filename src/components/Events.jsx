@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 const Events = ({event}) => {
   return (
     <div>
-      <div className="card bg-base-100  shadow-sm p-2 h-full">
+      <div className="card bg-base-100  shadow-sm  h-full">
         <figure>
           <img
             className="h-[300px] w-full rounded-xl shadow-sm"
@@ -19,7 +19,9 @@ const Events = ({event}) => {
           {/* title and category */}
           <div className="flex justify-between items-center mb-3">
             <div>
-              <h2 className="card-title inline-block  capitalize">{event.title}</h2>
+              <h2 className="md:card-title inline-block text-[14px]  capitalize">
+                {event.title}
+              </h2>
             </div>
             <div>
               <p className="flex items-center">
@@ -31,17 +33,17 @@ const Events = ({event}) => {
             </div>
           </div>
           {/* location and date */}
-          <div className='flex justify-between items-center mb-3'>
+          <div className="flex justify-between items-center mb-3">
             <div>
-              <p className='flex items-center'>
-                <FaLocationDot color='blue' />
-                <span className='ml-1   '> {event.location}</span>
+              <p className="flex items-center">
+                <FaLocationDot color="blue" />
+                <span className="ml-1   "> {event.location}</span>
               </p>
             </div>
             <div>
-              <p className='flex items-center'>
+              <p className="flex items-center">
                 <MdDateRange />
-                <span className='ml-1'>
+                <span className="ml-1">
                   {' '}
                   {new Date(event.event_date).toISOString().split('T')[0]}
                 </span>
@@ -49,8 +51,10 @@ const Events = ({event}) => {
             </div>
           </div>
           <div className="card-actions ">
-          
-            <Link className="btn btn-outline btn-success w-full" to={`/details/${event._id}`}>
+            <Link
+              className="btn btn-outline btn-success w-full"
+              to={`/details/${event._id}`}
+            >
               view Details
             </Link>
           </div>

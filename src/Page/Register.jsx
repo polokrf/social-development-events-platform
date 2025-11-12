@@ -34,10 +34,12 @@ const Register = () => {
       .then(res => {
         toast.success('Successful')
         updateUser(person).then(() => {
-          setUser(res.user)
+
+          setUser({ ...res.user ,person});
         }).catch(err => {
          err
         })
+       
         navigate('/')
       }).catch(err => {
       toast.error(err.message)

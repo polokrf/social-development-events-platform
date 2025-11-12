@@ -61,9 +61,7 @@ const Login = () => {
                     </button>
                     </div>
                 </div>
-              <div>
-                <a className="link link-hover">Forgot password?</a>
-              </div>
+            
               <button className="btn btn-outline btn-success  my-4">
                 Login
               </button>
