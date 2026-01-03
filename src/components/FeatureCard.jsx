@@ -12,7 +12,7 @@ const FeatureCard = ({card}) => {
 
       <div className=' text-center'>
         <h3  className="  font-bold capitalize mb-2">{card?.title}</h3>
-        <p className=" font-semibold text-gray-600 text-xs">
+        <p className=" font-semibold  text-xs">
           {card?.description}
         </p>
       </div>
