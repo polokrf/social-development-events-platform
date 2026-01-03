@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const FeatureCard = ({card}) => {
   return (
-    <div className=" h-full card-body shadow-sm rounded-xl  my-[25px]  shadow-blue-200">
+    <div className="  card-body h-[250px] shadow-sm rounded-xl  my-[25px]  shadow-blue-200">
       <img
         src={card?.image}
         alt=""
