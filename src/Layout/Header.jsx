@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../Axios/useAuth';
 import { toast } from 'react-toastify';
+import { FaHome, FaInfoCircle } from 'react-icons/fa';
+import { MdDashboard, MdEvent } from 'react-icons/md';
+import { FcAbout } from 'react-icons/fc';
 
 const Header = () => {
   const { user, logOut } = useAuth();
@@ -31,15 +34,25 @@ const Header = () => {
   const navLi = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/">
+          <FaHome /> Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/upcoming">UpcomingEvents</NavLink>
+        <NavLink to="/upcoming">
+          <MdEvent /> UpcomingEvents
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">
+          <FaInfoCircle />
+          About
+        </NavLink>
       </li>
     </>
   );
   return (
-    <div className="w-full bg-base-100 shadow-sm">
+    <div className="w-full bg-base-100 shadow-sm   ">
       <div className="navbar md:max-w-[1440px] mx-auto w-full ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -87,49 +100,46 @@ const Header = () => {
             <div className="dropdown mr-2">
               <img
                 tabIndex={0}
-                className={user && 'w-[50px] h-[50px] rounded-full'}
+                className={user && 'w-[50px] h-[50px] rounded-full cursor-pointer'}
                 src={user?.photoURL}
                 alt=""
                 title={user?.displayName}
               />
 
-              {user && (
+              {user ? (
                 <ul
                   tabIndex="-1"
                   className="dropdown-content menu w-fit bg-base-100 rounded-box z-1   p-2 shadow-sm "
                 >
                   <li className="mb-2">
-                    <NavLink to="/create">CreateEvent</NavLink>
+                    <NavLink to="/dashboard">
+                      <MdDashboard /> Dashboard
+                    </NavLink>
                   </li>
-
-                  <li className="mb-2">
-                    <NavLink to="/manage">ManageEvents</NavLink>
-                  </li>
+                 
                   <li>
-                    <NavLink to="/joined">JoinedEvents</NavLink>
+                    <button
+                      onClick={handleLogOut}
+                      className="btn btn-active btn-success text-white"
+                    >
+                      Log-Out
+                    </button>
                   </li>
                 </ul>
+              ) : (
+                <div>
+                  <Link
+                    className="btn btn-active btn-success text-white"
+                    to="/login"
+                  >
+                    Login
+                  </Link>
+                </div>
               )}
             </div>
           </div>
           {/* link in login page or logout */}
-          <div>
-            {user ? (
-              <Link
-                onClick={handleLogOut}
-                className="btn btn-active btn-success text-white"
-              >
-                Log-Out
-              </Link>
-            ) : (
-              <Link
-                className="btn btn-active btn-success text-white"
-                to="/login"
-              >
-                Login
-              </Link>
-            )}
-          </div>
+          <div></div>
         </div>
       </div>
     </div>

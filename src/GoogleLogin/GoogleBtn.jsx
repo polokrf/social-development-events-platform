@@ -2,6 +2,7 @@ import React from 'react';
 import useAuth from '../Axios/useAuth';
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router';
+import axios from 'axios';
 
 const GoogleBtn = () => {
   const { googleLogin } = useAuth();
@@ -10,12 +11,33 @@ const GoogleBtn = () => {
   const handleClick = ()=>{
     googleLogin()
       .then(res => {
-        toast.success('Successful')
+        toast.success('Successful');
+        const usInfo = res.user
+         const userInfo = {
+           email:usInfo?.email,
+           userName: usInfo?.displayName,
+           photo: usInfo?.photoURL,
+           userRole: 'user',
+           status: 'Active',
+         };
+
+         axios.post(
+             'https://social-development-events.vercel.app/user-data',
+             userInfo
+           )
+           .then(res => {})
+           .catch(err => {
+             console.log(err);
+           });
         navigate(`${location.state || '/'}`);
+
        
       }).catch(err => {
-      toast.error(err.message)
-    })
+        toast.error(err.message)
+      });
+    
+    
+   
   }
   return (
     <div>

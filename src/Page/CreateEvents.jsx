@@ -43,16 +43,20 @@ const CreateEvents = () => {
   }
   return (
     <div className=" main">
+      <div className='mb-5 text-center'>
+        <h1 className=' font-bold capitalize text-xl mb-2'>Create Event</h1>
+        <p>Add a new event and share it with others</p>
+      </div>
       <form
         onSubmit={handelEvent}
-        className="max-w-[500px] mx-auto p-4 bg-[#0a192f] shadow-lg "
+        className="max-w-[500px] mx-auto p-4  shadow-sm shadow-blue-200 rounded-xl "
       >
         <div>
           {/* first div */}
           <div className="md:flex items-center mb-2">
             {/* title */}
             <div className="w-full mr-2">
-              <label className="label block mb-2 text-white">Title</label>
+              <label className="label block mb-2 ">Title</label>
               <input
                 type="text"
                 className="input w-full"
@@ -64,9 +68,7 @@ const CreateEvents = () => {
             </div>
             {/* event */}
             <div className="w-full">
-              <label className="label block mb-2 text-white">
-                Select-Event
-              </label>
+              <label className="label block mb-2 ">Select-Event</label>
               <select name="select" required className="select w-full" id="">
                 <option value="Cleanup">Cleanup</option>
                 <option value="Plantation">Plantation</option>
@@ -83,9 +85,7 @@ const CreateEvents = () => {
           <div>
             {/* thumbnail Image URL */}
             <div className="mb-2">
-              <label className="label block mb-2 text-white">
-                thumbnail Image_URL
-              </label>
+              <label className="label block mb-2 ">thumbnail Image_URL</label>
               <input
                 type="text"
                 className="input w-full"
@@ -100,7 +100,7 @@ const CreateEvents = () => {
           <div>
             {/* location */}
             <div className="w-full  mb-2">
-              <label className="label block mb-2 text-white">location</label>
+              <label className="label block mb-2 ">location</label>
               <input
                 type="text"
                 className="input w-full"
@@ -113,7 +113,7 @@ const CreateEvents = () => {
             {/* Date */}
 
             <div>
-              <label className="label block mb-2 text-white">Date</label>
+              <label className="label block mb-2 ">Date</label>
               <DatePicker
                 selected={startDate}
                 onChange={date => setStartDate(date)}
@@ -128,7 +128,7 @@ const CreateEvents = () => {
           {/* 4th div */}
           <div>
             <fieldset className="fieldset text-center mt-2">
-              <legend className="mb-2 text-white ">Description</legend>
+              <legend className="mb-2  ">Description</legend>
               <textarea
                 className="textarea h-24 w-full"
                 name="description"

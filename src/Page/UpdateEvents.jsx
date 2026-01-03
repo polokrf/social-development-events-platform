@@ -4,6 +4,7 @@ import useInstanceAxios from '../Axios/useInstanceAxios';
 import DatePicker from 'react-datepicker';
 import { useNavigate, useParams } from 'react-router';
 import { toast } from 'react-toastify';
+import Loader from '../Loading/Loader';
 
 const UpdateEvents = () => {
   
@@ -20,17 +21,23 @@ const UpdateEvents = () => {
   tomorrow.setDate(tomorrow.getDate() + 1);
 
   useEffect(() => {
-    instance.get(`/events-upcoming`)
+    instance.get(`/manage-event?email=${user?.email}`)
       .then(data => {
         setDataEvent(data.data);
+        
         setLoading(false);
       })
       .catch(err => {
         console.log(err);
       });
-  }, [instance])
+  }, [instance,user]);
+
   
-  const updateData =Array.isArray(dataEvent) && dataEvent.find(data => data._id == id)
+  
+  
+  const updateData = Array.isArray(dataEvent) && dataEvent.find(data => data._id == id) || {}
+
+  
 
  
   const handelEventUpdate = (e) => {
@@ -56,7 +63,7 @@ const UpdateEvents = () => {
       .then(data => {
         if (data.data) {
            toast.success('successful');
-           navigate('/manage');
+           navigate('/dashboard/manage');
         }
        
       }).catch(err => {
@@ -64,115 +71,118 @@ const UpdateEvents = () => {
     })
 
   }
-  return (
-    <div className=" main">
-      <form
-        onSubmit={handelEventUpdate}
-        className="max-w-[500px] mx-auto p-4 bg-[#001f3f] shadow-lg "
-      >
-        <div>
-          {/* first div */}
-          <div className="md:flex items-center mb-2">
-            {/* title */}
-            <div className="w-full mr-2">
-              <label className="label block mb-2 text-white">Title</label>
-              <input
-                type="text"
-                className="input w-full"
-                name="title"
-                id=""
-                defaultValue={updateData?.title}
-                placeholder="title"
-              />
-            </div>
-            {/* event */}
-            <div className="w-full">
-              <label className="label block mb-2 text-white">
-                Select-Event
-              </label>
-              <select name="select" className="select w-full" id="">
-                <option defaultValue={updateData?.event_category}>
-                  {' '}
-                  {updateData?.event_category}
-                </option>
-                <option value="Cleanup">Cleanup</option>
-                <option value="Plantation">Plantation</option>
-                <option value="Donation">Donation</option>
-                <option value="Awareness Campaign">Awareness-Campaign</option>
-                <option value="Educational Workshop">
-                  Educational-Workshop
-                </option>
-              </select>
-            </div>
-          </div>
-          {/* scend div */}
+  if (loading) {
+    return <Loader></Loader>
+  }
+    return (
+      <div className=" main">
+        <div className=" text-center mb-4">
+          <h1 className=" font-bold mb-2 text-2xl">Update Your Event</h1>
+          <p>Edit your event details and keep the information up to date</p>
+        </div>
+        <form
+          onSubmit={handelEventUpdate}
+          className="max-w-[500px] mx-auto p-4  shadow-blue-200  shadow-sm  rounded-xl"
+        >
           <div>
-            {/* thumbnail Image URL */}
-            <div className="mb-2">
-              <label className="label block mb-2 text-white">
-                thumbnail Image_URL
-              </label>
-              <input
-                type="text"
-                className="input w-full"
-                name="photo"
-                defaultValue={updateData?.thumbnail}
-                id=""
-                placeholder="Image_URL"
-              />
+            {/* first div */}
+            <div className="md:flex items-center mb-2">
+              {/* title */}
+              <div className="w-full mr-2">
+                <label className="label block mb-2 ">Title</label>
+                <input
+                  type="text"
+                  className="input w-full"
+                  name="title"
+                  id=""
+                  defaultValue={updateData?.title}
+                  placeholder="title"
+                />
+              </div>
+              {/* event */}
+              <div className="w-full">
+                <label className="label block mb-2 ">Select-Event</label>
+                <select name="select" className="select w-full" id="">
+                  <option defaultValue={updateData?.event_category}>
+                    {' '}
+                    {updateData?.event_category}
+                  </option>
+                  <option value="Cleanup">Cleanup</option>
+                  <option value="Plantation">Plantation</option>
+                  <option value="Donation">Donation</option>
+                  <option value="Awareness Campaign">Awareness-Campaign</option>
+                  <option value="Educational Workshop">
+                    Educational-Workshop
+                  </option>
+                </select>
+              </div>
             </div>
-          </div>
-          {/* 3rd div */}
-          <div>
-            {/* location */}
-            <div className="w-full  mb-2">
-              <label className="label block mb-2 text-white">location</label>
-              <input
-                type="text"
-                className="input w-full"
-                name="location"
-                defaultValue={updateData?.location}
-                id=""
-                placeholder="location"
-              />
-            </div>
-            {/* Date */}
-
+            {/* scend div */}
             <div>
-              <label className="label block mb-2 text-white">Date</label>
-              <DatePicker
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                className="input w-full"
-                minDate={tomorrow}
-                placeholderText="Select future date"
-                required
-              ></DatePicker>
+              {/* thumbnail Image URL */}
+              <div className="mb-2">
+                <label className="label block mb-2 ">thumbnail Image_URL</label>
+                <input
+                  type="text"
+                  className="input w-full"
+                  name="photo"
+                  defaultValue={updateData?.thumbnail}
+                  id=""
+                  placeholder="Image_URL"
+                />
+              </div>
+            </div>
+            {/* 3rd div */}
+            <div>
+              {/* location */}
+              <div className="w-full  mb-2">
+                <label className="label block mb-2 ">location</label>
+                <input
+                  type="text"
+                  className="input w-full"
+                  name="location"
+                  defaultValue={updateData?.location}
+                  id=""
+                  placeholder="location"
+                />
+              </div>
+              {/* Date */}
+
+              <div>
+                <label className="label block mb-2 ">Date</label>
+                <DatePicker
+                  selected={startDate}
+                  onChange={date => setStartDate(date)}
+                  className="input w-full"
+                  minDate={tomorrow}
+                  placeholderText="Select future date"
+                  required
+                ></DatePicker>
+              </div>
+            </div>
+
+            {/* 4th div */}
+            <div>
+              <fieldset className="fieldset text-center mt-2">
+                <legend className="mb-2 ">Description</legend>
+                <textarea
+                  className="textarea h-24 w-full"
+                  name="description"
+                  placeholder="Description"
+                  defaultValue={updateData?.description}
+                ></textarea>
+              </fieldset>
             </div>
           </div>
 
-          {/* 4th div */}
-          <div>
-            <fieldset className="fieldset text-center mt-2">
-              <legend className="mb-2 text-white">Description</legend>
-              <textarea
-                className="textarea h-24 w-full"
-                name="description"
-                placeholder="Description"
-                defaultValue={updateData?.description}
-              ></textarea>
-            </fieldset>
+          <div className="mt-3">
+            <button className="btn btn-outline btn-success w-full">
+              Update Now
+            </button>
           </div>
-        </div>
-
-        <div className="mt-3">
-          <button className="btn btn-outline btn-success w-full">
-            Update Now
-          </button>
-        </div>
-      </form>
-    </div>
-  );
+        </form>
+      </div>
+    );
 };
 
 export default UpdateEvents;

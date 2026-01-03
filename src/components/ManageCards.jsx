@@ -63,7 +63,7 @@ const ManageCards = ({ data, setClear, clear }) => {
           <div className="card-actions justify-end mt-3">
             <Link
               className="btn btn-outline btn-success"
-              to={`/update-event/${data._id}`}
+              to={`/dashboard/manage/${data._id}`}
             >
               Update
             </Link>

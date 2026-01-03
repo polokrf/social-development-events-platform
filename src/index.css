@@ -29,7 +29,12 @@
 }
 
 a.active{
-  background-color: rgb(108, 145, 108);
-   color: white;
-   font-weight: bold;
+ @apply bg-linear-to-r to-blue-700 from-blue-400 text-white md:mx-2 mb-2 animate-pulse
+}
+.about{
+  @apply font-bold capitalize mb-3 text-xl border-b inline-block
+}
+
+.c{
+  position: 
 }

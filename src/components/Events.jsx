@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 const Events = ({event}) => {
   return (
     <div>
-      <div className="card bg-base-100  shadow-sm  h-full">
+      <div className="card bg-base-100  shadow-sm shadow-blue-200  h-full">
         <figure>
           <img
             className="h-[300px] w-full rounded-xl shadow-sm"
