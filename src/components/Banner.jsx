@@ -18,7 +18,7 @@ const Banner = () => {
           }}
         >
           <div className=" absolute  w-full bg-black/70 h-full  top-0"></div>
-          <div className="hero-content gap-4 main ">
+          <div className="hero-content gap-4 main  " data-aos="fade-down">
             <div>
               <h1 className=" md:text-4xl text-3xl font-bold  text-green-500">
                 <TypeAnimation

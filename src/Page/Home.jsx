@@ -64,11 +64,7 @@ const Home = () => {
       </section>
 
       <section className="md:max-w-[600px] mx-auto w-full my-[50px] p-2">
-        <div className="mb-[25px] text-center">
-          <h2 className=" text-2xl font-bold liner-text">
-            Subscribe for Event Updates
-          </h2>
-        </div>
+      
         <div className=" w-full">
           <Newsletter></Newsletter>
         </div>
